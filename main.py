@@ -25,8 +25,9 @@ def resume():
     except geoip2.errors.AddressNotFoundError:
         return flask.send_file(r'content/resume/CV_Mark_Ruzicka.pdf')
 
-@app.route("/blog")
-def blog():
+@app.route("/blog", defaults={'post_name': None})
+@app.route("/blog/<post_name>")
+def blog(post_name):
     blog_dir = 'content/blog_posts'
     files = os.listdir(blog_dir)
 
@@ -36,17 +37,27 @@ def blog():
     
     if not markdown_files:
         return "No blog posts available", 404
+
+    if post_name and f"{post_name}.md" in markdown_files:
+        selected_file = f"{post_name}.md"
+    else:
+        selected_file = markdown_files[0]  
+
+    selected_file_path = os.path.join(blog_dir, selected_file)
     
-    latest_file = markdown_files[0]
-    latest_file_path = os.path.join(blog_dir, latest_file)
-    
-    with open(latest_file_path, 'r', encoding='utf-8') as file:
+    with open(selected_file_path, 'r', encoding='utf-8') as file:
         markdown_content = file.read()
 
     with open(os.path.join('templates', 'blog_post_temp.html'), 'r') as file:
         blog_temp = file.read()
 
+    blog_links = ''.join(
+        f'<li><a href="/blog/{os.path.splitext(f)[0]}">{os.path.splitext(f)[0]}</a></li>'
+        for f in markdown_files
+    )
+
     html_content = blog_temp.replace("{{ blog_post_content }}", markdown.markdown(markdown_content))
+    html_content = html_content.replace("{{ blog_post_links }}", blog_links)
     
     return flask.render_template_string(html_content)
 
