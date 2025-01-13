@@ -1,10 +1,10 @@
 import flask
-import geoip2.database
+
 import os
 import markdown
 
 app = flask.Flask(__name__)
-reader = geoip2.database.Reader(r'content/geolite/GeoLite2-City.mmdb')
+
 
 @app.route("/")
 def home():
@@ -12,18 +12,7 @@ def home():
 
 @app.route("/resume")
 def resume():
-    user_ip = flask.request.remote_addr
-
-    try:
-        response = reader.city(user_ip)
-        country = response.country.iso_code
-
-        if country == 'US':
-            return flask.send_file(r'content/resume/MarkRuzicka_UWMadison.pdf')
-        else:
-            return flask.send_file(r'content/resume/CV_Mark_Ruzicka.pdf')
-    except geoip2.errors.AddressNotFoundError:
-        return flask.send_file(r'content/resume/CV_Mark_Ruzicka.pdf')
+    return flask.send_file(r'content/resume/CV_Mark_Ruzicka.pdf')
 
 @app.route("/blog", defaults={'post_name': None})
 @app.route("/blog/<post_name>")
