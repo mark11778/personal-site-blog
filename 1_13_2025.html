@@ -54,6 +54,27 @@
             <div class="main-content">
                 <h1>1/13/2025 - Happy New Year! :)</h1>
 <p>Ok so the first problem with this cite is being handled, that being that I don't have any money so I need to make all the html files static so they can be hosted on github pages ... with that being said I also have a server that I use to host a website but because this one is simpler than that one I am going to just work on making this one static. Which I think I can do via a CI pipeline to automate all of the process.</p>
+<p>Ok, progress has been made :)</p>
+<p>Here are the findings:
+General CI yml file configuration:
+Name:</p>
+<p>On: This refers to what action on github should trigger this workflow
+    - You can also add other parms to specify branches and what not</p>
+<p>jobs:
+    the actual thing that is being run</p>
+<pre><code>build:
+    which is needed to configure what os this is being run on
+
+    steps:
+    - name: it is good practice to name each step
+    uses: gitusr/repo@version
+        these are used to use already defined actions
+    run:
+        command line steps to run
+    with:
+        gives the workflow input parms
+</code></pre>
+<p>These are all the needed ones for this workflow to generate the static html files at least.</p>
             </div>
             <div class="sidebar">
                 <ul>
