@@ -25,6 +25,8 @@ markdown_files.sort(key=lambda f: os.path.getmtime(os.path.join(blog_dir, f)), r
 # Determine the most recent blog post
 most_recent_post = os.path.splitext(markdown_files[0])[0] if markdown_files else None
 
+print(most_recent_post)
+
 # Read and render the home page
 with open(os.path.join(template_dir, 'home.html'), 'r') as file:
     home_content = file.read()
