@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .back-button {
+            margin-bottom: 20px;
+        }
+
+        .content-wrapper {
+            display: flex;
+            width: 100%;
+        }
+
+        .main-content {
+            flex: 3;
+            padding: 20px;
+            border-right: 1px solid #ccc;
+        }
+
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-button">
+            <a href="javascript:history.back()">Back</a>
+        </div>
+        <div class="content-wrapper">
+            <div class="main-content">
+                <h1>1/21/2025 Image Similarity</h1>
+<h2>Background:</h2>
+<p>For the parking ticket data that I have collected there is one major piece that is missing from the data that is provided off of each ticket. Fortunately, the street name is given, but I want to be able to find the exact block that the ticket was written on. I think that, that information could lead to making this website to provide significantly more useful information. </p>
+<p>From each ticket, the officer takes some pictures of the car to provide context for the citation that is being cited. I am hoping that via the background of these photos I will get enough data to be able to identify which block of a street it is on. </p>
+<h2>Goal:</h2>
+<p>From the data off of the images from the parking citation, be able to identify which block of a street it is on.</p>
+<h2>Training Data and Model:</h2>
+<p>Currently I am still looking into which model would be the best for this application, I am thinking that the Spotify ANNOY, model might be a really good starting point to try. But, there is some issues I am seeing with the research I have done, most notably the object detection. From my understanding this model identifies objects in the photos and tries to find all the images that also have those types of objects. The main problem with that is that all the photos I have will contain pictures of cars, which is odiously not what we are trying to match with.</p>
+<p>Which I will try to ignore this at first and see what the model matches with, but I think I will need to remove the cars from the photo so it is not a possibility that it matches with them. With that being said my training data is a video recording of driving down Spring St, I picked Spring St. for three reasons, 1, it was close 2, Parking is only permitted on one side, 3, Parking citations are written on that street semi regularly.</p>
+            </div>
+            <div class="sidebar">
+                <ul>
+                    <li><a href="1_21_2025.html">1_21_2025</a></li><li><a href="1_13_2025.html">1_13_2025</a></li><li><a href="12_24_2024.html">12_24_2024</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
